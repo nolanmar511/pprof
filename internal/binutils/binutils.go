@@ -25,8 +25,8 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/google/pprof/internal/elfexec"
-	"github.com/google/pprof/internal/plugin"
+	"github.com/nolanmar511/pprof/internal/elfexec"
+	"github.com/nolanmar511/pprof/internal/plugin"
 )
 
 // A Binutils implements plugin.ObjTool by invoking the GNU binutils.

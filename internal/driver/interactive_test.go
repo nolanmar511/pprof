@@ -21,9 +21,9 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/google/pprof/internal/plugin"
-	"github.com/google/pprof/internal/report"
-	"github.com/google/pprof/profile"
+	"github.com/nolanmar511/pprof/internal/plugin"
+	"github.com/nolanmar511/pprof/internal/report"
+	"github.com/nolanmar511/pprof/profile"
 )
 
 func TestShell(t *testing.T) {

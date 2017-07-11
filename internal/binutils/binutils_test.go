@@ -18,7 +18,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/google/pprof/internal/plugin"
+	"github.com/nolanmar511/pprof/internal/plugin"
 )
 
 var testAddrMap = map[int]string{

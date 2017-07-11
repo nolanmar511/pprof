@@ -18,7 +18,7 @@ import (
 	"bytes"
 	"testing"
 
-	"github.com/google/pprof/internal/proftest"
+	"github.com/nolanmar511/pprof/internal/proftest"
 )
 
 var testM = []*Mapping{

@@ -1,7 +1,7 @@
 package pprof
 
 import (
-	"github.com/google/pprof/profile"
+	"github.com/nolanmar511/pprof/profile"
 	"io/ioutil"
 	"testing"
 )

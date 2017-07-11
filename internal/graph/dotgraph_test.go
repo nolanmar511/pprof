@@ -23,7 +23,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/google/pprof/internal/proftest"
+	"github.com/nolanmar511/pprof/internal/proftest"
 )
 
 const path = "testdata/"
