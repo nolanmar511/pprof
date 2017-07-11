@@ -20,8 +20,8 @@ import (
 	"regexp"
 	"strconv"
 
-	"github.com/nolanmar511/pprof/internal/plugin"
 	"github.com/ianlancetaylor/demangle"
+	"github.com/nolanmar511/pprof/internal/plugin"
 )
 
 var (
