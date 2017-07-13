@@ -11,8 +11,20 @@ os:
 
 matrix:
   include:
+    os: linux
+    - go: 1.7.x
+    - go: 1.8.x
+    os: osx
+    - go: 1.7.x
+    - go: 1.8.x
     - osx_image: xcode6.4 
+    os: osx
+    - go: 1.7.x
+    - go: 1.8.x
     - osx_image: xcode7.3
+    os: osx
+    - go: 1.7.x
+    - go: 1.8.x
     - osx_image: xcode8.1
 
 before_install:
