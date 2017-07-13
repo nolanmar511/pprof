@@ -5,7 +5,7 @@ go:
 
 go_import_path: github.com/google/pprof
 
-matrix
+matrix:
   include:
     - os: linux
     - os: osx
