@@ -15,7 +15,7 @@ func TestParseData(t *testing.T) {
 	for _, f := range files {
 		defer func() {
 			if r := recover(); r != nil {
-				t.Error("Panic while parsing %s", f)
+				t.Errorf("Panic while parsing %s", f)
 			}
 		}()
 		file := path + f.Name()
