@@ -13,6 +13,11 @@ func TestParseData(t *testing.T) {
 		t.Errorf("Problem reading directory %s : %v", path, err)
 	}
 	for _, f := range files {
+		defer func() {
+			if r := recover(); r != nil {
+				t.Error("Panic while parsing %s", f)
+			}
+		}()
 		file := path + f.Name()
 		inbytes, err := ioutil.ReadFile(file)
 		if err != nil {
