@@ -9,7 +9,9 @@ os:
   - os: linux
   - os: osx
     osx_image: xcode6.4 
+  - os: osx
     osx_image: xcode7.3 
+  - os: osx
     osx_image: xcode8.1
 
 before_install:
