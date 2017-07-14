@@ -420,11 +420,11 @@ func checkProfileHasFunction(p *profile.Profile, fname string) error {
 	fnames := make([]string, len(p.Function))
 	for i, f := range p.Function {
 		if strings.Contains(f.Name, fname) {
-			//return nil
+			return nil
 		}
 		fnames[i] = f.Name
 	}
-	return fmt.Errorf("got:\n\t%s\n, wanted function containing %q", strings.Join(fnames, "\n\t"), fname)
+	return fmt.Errorf("got functions:\n\t%s\n want: function with name containing %q", strings.Join(fnames, "\n\t"), fname)
 }
 
 func selfSignedCert(t *testing.T) tls.Certificate {
