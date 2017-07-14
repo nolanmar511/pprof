@@ -27,6 +27,7 @@ matrix:
       osx_image: xcode8.1
       go: 1.8.x
 
+
 before_install:
   - go get -u github.com/golang/lint/golint honnef.co/go/tools/cmd/...
 
