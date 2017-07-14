@@ -17,6 +17,7 @@ package profile
 import (
 	"errors"
 	"sort"
+	"fmt"
 )
 
 func (p *Profile) decoder() []decoder {
@@ -245,7 +246,9 @@ func (p *Profile) postDecode() error {
 	functions := make(map[uint64]*Function, len(p.Function))
 	functionIds := make([]*Function, len(p.Function)+1)
 	for _, f := range p.Function {
+		fmt.Printf("String#: %d,   ", &f.nameX)
 		f.Name, err = getString(p.stringTable, &f.nameX, err)
+		fmt.Printf("Name : %s \n", f.Name)
 		f.SystemName, err = getString(p.stringTable, &f.systemNameX, err)
 		f.Filename, err = getString(p.stringTable, &f.filenameX, err)
 		if f.ID < uint64(len(functionIds)) {
