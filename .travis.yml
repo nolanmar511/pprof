@@ -10,6 +10,7 @@ matrix:
       osx_image: xcode6.4
       go: 1.7.x
 
+
 before_install:
   - go get -u github.com/golang/lint/golint honnef.co/go/tools/cmd/...
 
