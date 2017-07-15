@@ -17,7 +17,8 @@ package profile
 import (
 	"errors"
 	"sort"
-	"log"
+	"fmt"
+	"strings"
 )
 
 func (p *Profile) decoder() []decoder {
@@ -245,10 +246,12 @@ func (p *Profile) postDecode() error {
 
 	functions := make(map[uint64]*Function, len(p.Function))
 	functionIds := make([]*Function, len(p.Function)+1)
-	for _, f := range p.Function {
-		log.Printf("String#: %d,   ", &f.nameX)
+	fnum := make([]int64, len(p.Function))
+	fname := make([]string, len(p.Function))
+	for i, f := range p.Function {
+		fnum[i] = f.nameX
 		f.Name, err = getString(p.stringTable, &f.nameX, err)
-		log.Printf("Name : %s \n", f.Name)
+		fname[i] = f.Name
 		f.SystemName, err = getString(p.stringTable, &f.systemNameX, err)
 		f.Filename, err = getString(p.stringTable, &f.filenameX, err)
 		if f.ID < uint64(len(functionIds)) {
@@ -257,6 +260,9 @@ func (p *Profile) postDecode() error {
 			functions[f.ID] = f
 		}
 	}
+
+	panic(fmt.Sprintf("Numbers:\n\t %v \nStrings:\n\t %s", fnum, strings.Join(fname, "\n\t")))
+
 
 	locations := make(map[uint64]*Location, len(p.Location))
 	locationIds := make([]*Location, len(p.Location)+1)
