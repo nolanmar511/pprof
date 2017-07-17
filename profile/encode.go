@@ -18,7 +18,6 @@ import (
 	"errors"
 	"sort"
 	"fmt"
-	"strings"
 )
 
 func (p *Profile) decoder() []decoder {
@@ -100,6 +99,7 @@ func (p *Profile) preEncode() {
 		f.nameX = addString(strings, f.Name)
 		f.systemNameX = addString(strings, f.SystemName)
 		f.filenameX = addString(strings, f.Filename)
+		fmt.Printf("Function: %d, %s\n", f.nameX, f.Name)
 	}
 
 	p.dropFramesX = addString(strings, p.DropFrames)
@@ -260,9 +260,6 @@ func (p *Profile) postDecode() error {
 			functions[f.ID] = f
 		}
 	}
-
-	panic(fmt.Sprintf("Numbers:\n\t %v \nStrings:\n\t %s", fnum, strings.Join(fname, "\n\t")))
-
 
 	locations := make(map[uint64]*Location, len(p.Location))
 	locationIds := make([]*Location, len(p.Location)+1)
