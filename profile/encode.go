@@ -96,6 +96,7 @@ func (p *Profile) preEncode() {
 		}
 	}
 	for _, f := range p.Function {
+		//fmt.Printf("Function: %d, %s\n", f.nameX, f.Name)
 		f.nameX = addString(strings, f.Name)
 		f.systemNameX = addString(strings, f.SystemName)
 		f.filenameX = addString(strings, f.Filename)
@@ -120,6 +121,10 @@ func (p *Profile) preEncode() {
 	p.stringTable = make([]string, len(strings))
 	for s, i := range strings {
 		p.stringTable[i] = s
+	}
+
+	for k, v := range strings {
+		fmt.Printf("String: %d %s\n", v, k)
 	}
 }
 
