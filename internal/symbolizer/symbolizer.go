@@ -98,6 +98,7 @@ func postURL(source, post string) ([]byte, error) {
 
 	var tlsConfig *tls.Config
 	if url.Scheme == "https+insecure" {
+		fmt.Printf("\nINSECURE URL - symbolizer\n\n")
 		tlsConfig = &tls.Config{
 			InsecureSkipVerify: true,
 		}
