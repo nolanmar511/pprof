@@ -25,6 +25,7 @@ import (
 	"io/ioutil"
 	"math/big"
 	"net/http"
+	_ "net/http/pprof"
 	"net/url"
 	"os"
 	"path/filepath"
