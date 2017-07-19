@@ -417,12 +417,14 @@ func TestHttpsInsecure(t *testing.T) {
 }
 
 func checkProfileHasFunction(p *profile.Profile, fname string) error {
-	for _, f := range p.Function {
+	fnames := make([]string, len(p.Function))
+	for i, f := range p.Function {
 		if strings.Contains(f.Name, fname) {
 			return nil
 		}
+		fnames[i] = f.Name
 	}
-	return fmt.Errorf("got %s, want function %q", p.String(), fname)
+	return fmt.Errorf("got functions:\n\t%s\n want: a function with name containing %q", strings.Join(fnames, "\n\t"), fname)
 }
 
 func selfSignedCert(t *testing.T) tls.Certificate {
