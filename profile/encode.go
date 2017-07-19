@@ -17,6 +17,7 @@ package profile
 import (
 	"errors"
 	"sort"
+	"strings"
 	"fmt"
 )
 
@@ -236,7 +237,7 @@ var profileDecoder = []decoder{
 // suffix X) and populates the corresponding exported fields.
 // The unexported fields are cleared up to facilitate testing.
 func (p *Profile) postDecode() error {
-	fmt.Printf("\nSTRING TABLE: %v\n", p.stringTable)
+	fmt.Printf("\nSTRING TABLE: %s\n", strings.Join(p.stringTable, "\n"))
 	var err error
 	mappings := make(map[uint64]*Mapping, len(p.Mapping))
 	mappingIds := make([]*Mapping, len(p.Mapping)+1)
