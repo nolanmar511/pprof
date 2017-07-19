@@ -282,7 +282,13 @@ func setTmpDir(ui plugin.UI) (string, error) {
 	if profileDir := os.Getenv("PPROF_TMPDIR"); profileDir != "" {
 		return profileDir, nil
 	}
-	for _, tmpDir := range []string{os.Getenv(homeEnv()) + "/pprof", os.TempDir()} {
+	homeEnvVar := homeEnv()
+	homeEnv := os.Getenv(homeEnvVar)
+	if homeEnv == "" {
+		ui.PrintErr("home environment, %s, is empty", homeEnvVar)
+	}
+	pprofTmpdir := filepath.Join(homeEnv, "pprof")
+	for _, tmpDir := range []string{pprofTmpdir, os.TempDir()} {
 		if err := os.MkdirAll(tmpDir, 0755); err != nil {
 			ui.PrintErr("Could not use temp dir ", tmpDir, ": ", err.Error())
 			continue
