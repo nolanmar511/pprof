@@ -578,7 +578,7 @@ var httpGet = func(source string, timeout time.Duration) (*http.Response, error)
 
 	var tlsConfig *tls.Config
 	if url.Scheme == "https+insecure" {
-		fmt.Printf("\nINSECURE URL - fetch\n\n")
+
 		tlsConfig = &tls.Config{
 			InsecureSkipVerify: true,
 		}
