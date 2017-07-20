@@ -401,7 +401,7 @@ func TestHttpsInsecure(t *testing.T) {
 	}
 	o := &plugin.Options{
 		Obj: &binutils.Binutils{},
-		UI:  &proftest.TestUI{T: t, IgnoreRx: "Saved profile in"},
+		UI:  &proftest.TestUI{T: t, Ignore: 1, IgnoreRx: "Saved profile in"},
 	}
 	o.Sym = &symbolizer.Symbolizer{Obj: o.Obj, UI: o.UI}
 	p, err := fetchProfiles(s, o)
