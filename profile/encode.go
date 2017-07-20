@@ -16,9 +16,9 @@ package profile
 
 import (
 	"errors"
+	"fmt"
 	"sort"
 	"strings"
-	"fmt"
 )
 
 func (p *Profile) decoder() []decoder {
@@ -527,6 +527,7 @@ func addString(strings map[string]int, s string) int64 {
 }
 
 func getString(strings []string, strng *int64, err error) (string, error) {
+	fmt.Printf("STRING TABLE: %v", strings)
 	if err != nil {
 		return "", err
 	}
