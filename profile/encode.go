@@ -145,7 +145,7 @@ func (p *Profile) encode(b *buffer) {
 	for _, x := range p.Function {
 		encodeMessage(b, 5, x)
 	}
-	fmt.Printf("%v\n", p.stringTable)
+	fmt.Printf("STRINGS %v:\n", p.stringTable)
 	encodeStrings(b, 6, p.stringTable)
 	encodeInt64Opt(b, 7, p.dropFramesX)
 	encodeInt64Opt(b, 8, p.keepFramesX)
@@ -209,7 +209,7 @@ var profileDecoder = []decoder{
 		if m.(*Profile).stringTable[0] != "" {
 			return errors.New("string_table[0] must be ''")
 		}
-		fmt.Printf("%v\n", &m.(*Profile).stringTable)
+		fmt.Printf("STRING!!!:   %v\n", &m.(*Profile).stringTable)
 		return nil
 	},
 	// int64 drop_frames = 7
@@ -348,6 +348,8 @@ func (p *Profile) postDecode() error {
 		c, err = getString(p.stringTable, &i, err)
 		p.Comments = append(p.Comments, c)
 	}
+
+	fmt.Printf("STRING: %v:", p.stringTable)
 
 	p.commentX = nil
 	p.DefaultSampleType, err = getString(p.stringTable, &p.defaultSampleTypeX, err)
