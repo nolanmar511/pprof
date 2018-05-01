@@ -228,66 +228,14 @@ func TestFetchWithBase(t *testing.T) {
 
 	testcases := []testcase{
 		{
-			"not normalized base is same as source",
-			[]string{path + "cppbench.contention"},
-			[]string{path + "cppbench.contention"},
-			[]string{},
-			false,
-			[]WantSample{},
-			"",
-		},
-		{
-			"not normalized base is same as source",
-			[]string{path + "cppbench.contention"},
+			"not normalized diff base is same as source",
 			[]string{path + "cppbench.contention"},
 			[]string{},
-			false,
-			[]WantSample{},
-			"",
-		},
-		{
-			"not normalized single source, multiple base (all profiles same)",
 			[]string{path + "cppbench.contention"},
-			[]string{path + "cppbench.contention", path + "cppbench.contention"},
-			[]string{},
 			false,
 			[]WantSample{
 				{
-					values: []int64{-2700, -608881724},
-					labels: map[string][]string{},
-				},
-				{
-					values: []int64{-100, -23992},
-					labels: map[string][]string{},
-				},
-				{
-					values: []int64{-200, -179943},
-					labels: map[string][]string{},
-				},
-				{
-					values: []int64{-100, -17778444},
-					labels: map[string][]string{},
-				},
-				{
-					values: []int64{-100, -75976},
-					labels: map[string][]string{},
-				},
-				{
-					values: []int64{-300, -63568134},
-					labels: map[string][]string{},
-				},
-			},
-			"",
-		},
-		{
-			"not normalized, different base and source",
-			[]string{path + "cppbench.contention"},
-			[]string{path + "cppbench.small.contention"},
-			[]string{},
-			false,
-			[]WantSample{
-				{
-					values: []int64{1700, 608878600},
+					values: []int64{2700, 608881724},
 					labels: map[string][]string{},
 				},
 				{
@@ -310,60 +258,41 @@ func TestFetchWithBase(t *testing.T) {
 					values: []int64{300, 63568134},
 					labels: map[string][]string{},
 				},
-			},
-			"",
-		},
-		{
-			"normalized base is same as source",
-			[]string{path + "cppbench.contention"},
-			[]string{path + "cppbench.contention"},
-			[]string{},
-			true,
-			[]WantSample{},
-			"",
-		},
-		{
-			"normalized single source, multiple base (all profiles same)",
-			[]string{path + "cppbench.contention"},
-			[]string{path + "cppbench.contention", path + "cppbench.contention"},
-			[]string{},
-			true,
-			[]WantSample{},
-			"",
-		},
-		{
-			"normalized different base and source",
-			[]string{path + "cppbench.contention"},
-			[]string{path + "cppbench.small.contention"},
-			[]string{},
-			true,
-			[]WantSample{
 				{
-					values: []int64{-229, -370},
-					labels: map[string][]string{},
+					values: []int64{-2700, -608881724},
+					labels: map[string][]string{"pprof::diff": {"true"}},
 				},
 				{
-					values: []int64{28, 0},
-					labels: map[string][]string{},
+					values: []int64{-100, -23992},
+					labels: map[string][]string{"pprof::diff": {"true"}},
 				},
 				{
-					values: []int64{57, 0},
-					labels: map[string][]string{},
+					values: []int64{-200, -179943},
+					labels: map[string][]string{"pprof::diff": {"true"}},
 				},
 				{
-					values: []int64{28, 80},
-					labels: map[string][]string{},
+					values: []int64{-100, -17778444},
+					labels: map[string][]string{"pprof::diff": {"true"}},
 				},
 				{
-					values: []int64{28, 0},
-					labels: map[string][]string{},
+					values: []int64{-100, -75976},
+					labels: map[string][]string{"pprof::diff": {"true"}},
 				},
 				{
-					values: []int64{85, 287},
-					labels: map[string][]string{},
+					values: []int64{-300, -63568134},
+					labels: map[string][]string{"pprof::diff": {"true"}},
 				},
 			},
 			"",
+		},
+		{
+			"diff and base both specified",
+			[]string{path + "cppbench.contention"},
+			[]string{path + "cppbench.contention"},
+			[]string{path + "cppbench.contention"},
+			false,
+			[]WantSample{},
+			"only -base or -diff flag can be specified",
 		},
 	}
 
