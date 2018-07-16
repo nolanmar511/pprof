@@ -189,9 +189,11 @@ func (bu *Binutils) Open(name string, start, limit, offset uint64) (plugin.ObjFi
 	}
 
 	if f, err := b.openELF(name, start, limit, offset); err == nil {
+		fmt.Printf("openELF\n")
 		return f, nil
 	}
 	if f, err := b.openMachO(name, start, limit, offset); err == nil {
+		fmt.Printf("openMachO\n")
 		return f, nil
 	}
 	return nil, fmt.Errorf("unrecognized binary: %s", name)
@@ -267,8 +269,10 @@ func (b *binrep) openELF(name string, start, limit, offset uint64) (plugin.ObjFi
 		}
 	}
 	if b.fast || (!b.addr2lineFound && !b.llvmSymbolizerFound) {
+		fmt.Printf("return fileNM\n")
 		return &fileNM{file: file{b, name, base, buildID}}, nil
 	}
+	fmt.Printf("return fileAddr2Line\n")
 	return &fileAddr2Line{file: file{b, name, base, buildID}}, nil
 }
 
@@ -344,9 +348,11 @@ type fileAddr2Line struct {
 func (f *fileAddr2Line) SourceLine(addr uint64) ([]plugin.Frame, error) {
 	f.once.Do(f.init)
 	if f.llvmSymbolizer != nil {
+		fmt.Println("llvm symbolizer")
 		return f.llvmSymbolizer.addrInfo(addr)
 	}
 	if f.addr2liner != nil {
+		fmt.Println("addr2line")
 		return f.addr2liner.addrInfo(addr)
 	}
 	return nil, fmt.Errorf("could not find local addr2liner")
