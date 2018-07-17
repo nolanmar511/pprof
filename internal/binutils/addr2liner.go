@@ -180,15 +180,20 @@ func (d *addr2Liner) rawAddrInfo(addr uint64) ([]plugin.Frame, error) {
 
 	fmt.Println("writing addr-d.base")
 	if err := d.rw.write(fmt.Sprintf("%x", addr-d.base)); err != nil {
+		fmt.Println("got error when writing addr-d.base")
 		return nil, err
 	}
 
+	fmt.Println("writing sentinel")
 	if err := d.rw.write(fmt.Sprintf("%x", sentinel)); err != nil {
+		fmt.Println("got error when writing sentinel")
 		return nil, err
 	}
 
+	fmt.Println("reading response")
 	resp, err := d.readString()
 	if err != nil {
+		fmt.Println("got error when reading response")
 		return nil, err
 	}
 
