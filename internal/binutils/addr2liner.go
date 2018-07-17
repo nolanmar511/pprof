@@ -178,6 +178,7 @@ func (d *addr2Liner) rawAddrInfo(addr uint64) ([]plugin.Frame, error) {
 	d.mu.Lock()
 	defer d.mu.Unlock()
 
+	fmt.Println("writing addr-d.base")
 	if err := d.rw.write(fmt.Sprintf("%x", addr-d.base)); err != nil {
 		return nil, err
 	}
