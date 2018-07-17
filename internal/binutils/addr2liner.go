@@ -212,6 +212,7 @@ func (d *addr2Liner) rawAddrInfo(addr uint64) ([]plugin.Frame, error) {
 // addrInfo returns the stack frame information for a specific program
 // address. It returns nil if the address could not be identified.
 func (d *addr2Liner) addrInfo(addr uint64) ([]plugin.Frame, error) {
+	fmt.Println("calling d.rawAddrInfo(addr)")
 	stack, err := d.rawAddrInfo(addr)
 	if err != nil {
 		return nil, err
@@ -221,6 +222,7 @@ func (d *addr2Liner) addrInfo(addr uint64) ([]plugin.Frame, error) {
 	// https://sourceware.org/bugzilla/show_bug.cgi?id=17541. Attempt to replace
 	// the name with a better one from nm.
 	if len(stack) > 0 && d.nm != nil {
+		fmt.Println("calling d.nm.addrInfo(addr)")
 		nm, err := d.nm.addrInfo(addr)
 		if err == nil && len(nm) > 0 {
 			// Last entry in frame list should match since it is non-inlined. As a
